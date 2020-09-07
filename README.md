@@ -26,3 +26,27 @@ CD into its folder (`cd ~/grub-btrfs/`) and run `sudo make install`.
 Config can be customized in `/etc/default/grub-btrfs/config` (more on the repos URL).
 
 **IMPORTANT!** - don't forget to run `sudo update-grub`, or you won't be able to boot next time.
+
+After reboot a new entry called "btrfs snapshots" in GRUB2 boot menu should appear. By selecting one of those snapshots you should be able to boot from it.
+
+### Install NVIDIA - PRIME capable drivers
+When using Neon (or Ubuntu), the installation is fairly simple.
+In console use command `ubuntu-drivers list`. 
+Check if the latest NVIDIA driver is listed. 
+If yes, you can proceed by running `sudo ubuntu-drivers autoinstall` - the latest drivers will be installed automatically with their dependencies.
+
+If the latest driver is not listed, try adding nvidia ppa: `sudo add-apt-repository ppa:graphics-drivers/ppa`.
+
+After installation is complete, reboot your PC.
+
+**IMPORTANT!! - This section is related to optimus-enabled laptops. If you're on desktop, or have only iGPU you can safely skip the next few lines.**
+
+When booted, open **NVIDIA X server settings**, or run `sudo nvidia-settings`.
+
+Open the **PRIME Profiles** tab - it should look like this:
+
+![PRIME configuration](/img/NVIDIA-config.png)
+
+Try all these profiles with secondary display.
+Before making any changes I recommend creating a snapshot in case anything breaks. 
+If everything works fine, you're done here.
